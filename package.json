@@ -1,6 +1,6 @@
 {
   "name": "electron-updater-example",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "Matt Haggard",
@@ -13,7 +13,7 @@
     "electron-updater": "^1.4.2"
   },
   "build": {
-    "appId": "com.github.iffy.electronupdaterexample",
+    "appId": "com.github.wshamim.electronupdaterexample",
     "mac": {
       "category": "your.app.category.type",
       "target": [
