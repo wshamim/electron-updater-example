@@ -1,3 +1,13 @@
+/**
+ * @Author: Wahaj Shamim <wahaj>
+ * @Date:   2017-07-17T10:39:32+10:00
+ * @Email:  wahaj@southbanksoftware.com
+ * @Last modified by:   wahaj
+ * @Last modified time: 2017-07-20T09:56:46+10:00
+ */
+
+
+
 // This is free and unencumbered software released into the public domain.
 // See LICENSE for details
 
@@ -30,6 +40,13 @@ if (process.platform === 'darwin') {
     label: name,
     submenu: [
       {
+        label: 'Update and Restart',
+        accelerator: 'Command + U',
+        click(){
+          updateApp();
+        }
+      },
+      {
         label: 'About ' + name,
         role: 'about'
       },
@@ -53,7 +70,9 @@ if (process.platform === 'darwin') {
 // that updates are working.
 //-------------------------------------------------------------------
 let win;
-
+function updateApp() {
+  autoUpdater.quitAndInstall();  
+}
 function sendStatusToWindow(text) {
   log.info(text);
   win.webContents.send('message', text);
@@ -86,7 +105,7 @@ autoUpdater.on('download-progress', (progressObj) => {
   sendStatusToWindow(log_message);
 })
 autoUpdater.on('update-downloaded', (info) => {
-  sendStatusToWindow('Update downloaded; will install in 5 seconds');
+  sendStatusToWindow('Update downloaded;');
 });
 app.on('ready', function() {
   // Create the Menu
@@ -120,14 +139,14 @@ app.on('window-all-closed', () => {
 // })
 // autoUpdater.on('download-progress', (progressObj) => {
 // })
-autoUpdater.on('update-downloaded', (info) => {
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 5 seconds.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  setTimeout(function() {
-    autoUpdater.quitAndInstall();  
-  }, 5000)
-})
+// autoUpdater.on('update-downloaded', (info) => {
+//   // Wait 5 seconds, then quit and install
+//   // In your application, you don't need to wait 5 seconds.
+//   // You could call autoUpdater.quitAndInstall(); immediately
+//   setTimeout(function() {
+//     autoUpdater.quitAndInstall();
+//   }, 5000)
+// })
 
 app.on('ready', function()  {
   autoUpdater.checkForUpdates();
